@@ -1,0 +1,37 @@
+<div id="stats-app">
+  <h3>Статистика активности</h3>
+
+  <div class="date-inputs">
+    <label>С:</label>
+    <input type="date" id="stats-date-from" />
+    <label>По:</label>
+    <input type="date" id="stats-date-to" />
+  </div>
+
+  <button id="stats-calculate">Посчитать</button>
+
+  <div id="stats-loading">Загрузка...</div>
+  <div id="stats-progress">
+    <div id="stats-progress-bar"></div>
+  </div>
+
+  <div id="stats-results" style="display: none">
+    <div class="stats-section">
+      <h4>Топ по количеству сообщений</h4>
+      <div id="top-posters-list"></div>
+    </div>
+
+    <div class="stats-section">
+      <h4>Топ по количеству символов</h4>
+      <div id="top-chars-list"></div>
+    </div>
+
+    <div class="stats-section">
+      <h4>Самые активные эпизоды</h4>
+      <div id="top-topics-list"></div>
+    </div>
+  </div>
+</div>
+
+<script src="scripts.js"></script>
+<link rel="stylesheet" href="style.css" />
