@@ -1,20 +1,19 @@
 $(document).ready(function () {
   const CONFIG = {
-    excludeForums: window.PR_FORUMS,
-    charCountForums: window.PLAY_FORUMS,
-    targetGroups: [1, 2, 5],
-    topLimit: 30,
-    maxTopics: 100,
-    requestDelay: 500,
+    excludeForums: [1, 2, 3], // ID подфорумов, исключаемых из подсчёта
+    charCountForums: [1, 3, 4], // ID подфорумов для подсчёта символов
+    targetGroups: [1, 2, 5], // ID групп пользователей
+    topLimit: 30, // количество результатов в каждом топе
+    maxTopics: 100, // максимальное количество обрабатываемых тем
+    requestDelay: 500, // задержка между API-запросами в миллисекундах
   };
 
-  // Устанавливаем даты: с прошлой недели по вчера
+  // устанавливаем даты: с прошлой недели по вчера
   function setDefaultDates() {
     const today = new Date();
     const yesterday = new Date(today);
     yesterday.setDate(today.getDate() - 1);
 
-    // Начало периода: 7 дней назад от вчера
     const weekAgo = new Date(yesterday);
     weekAgo.setDate(yesterday.getDate() - 7);
 
@@ -56,20 +55,14 @@ $(document).ready(function () {
               userMap.set(parseInt(user.user_id), user.username);
             }
           });
-          console.log(
-            `Группа ${groupId}: +${response.response.users.length} пользователей`,
-          );
         }
 
         await new Promise((resolve) =>
           setTimeout(resolve, CONFIG.requestDelay),
         );
-      } catch (error) {
-        console.log(`Группа ${groupId}: пропущена`);
-      }
+      } catch (error) {}
     }
 
-    console.log(`Всего пользователей: ${userMap.size}`);
     return userMap;
   }
 
@@ -123,7 +116,6 @@ $(document).ready(function () {
       }
     }
 
-    console.log(`${label}: ${allTopics.length} тем`);
     return allTopics
       .sort((a, b) => (b.last_post_date || 0) - (a.last_post_date || 0))
       .slice(0, CONFIG.maxTopics);
@@ -201,9 +193,6 @@ $(document).ready(function () {
       }
 
       const forumIdsForPosts = forumsForPosts.map((f) => parseInt(f.id));
-      console.log(
-        `Форумы для постов (${forumIdsForPosts.length}): ${forumIdsForPosts.join(", ")}`,
-      );
 
       $("#stats-loading").text("Получаем темы для подсчета постов...");
       const topicsForPosts = await getTopicsFromForums(
@@ -294,7 +283,7 @@ $(document).ready(function () {
   }
 
   function displayResults(targetUsers, postCount, charCount, topicActivity) {
-    // Топ по количеству сообщений
+    // топ по количеству сообщений
     const topPosters = Object.entries(postCount)
       .sort((a, b) => b[1] - a[1])
       .slice(0, CONFIG.topLimit)
@@ -311,7 +300,7 @@ $(document).ready(function () {
     postersHTML += "</ol>";
     $("#top-posters-list").html(postersHTML);
 
-    // Топ по символам
+    // топ по символам
     const topChars = Object.entries(charCount)
       .sort((a, b) => b[1] - a[1])
       .slice(0, CONFIG.topLimit)
@@ -328,7 +317,7 @@ $(document).ready(function () {
     charsHTML += "</ol>";
     $("#top-chars-list").html(charsHTML);
 
-    // Самые активные эпизоды
+    // самые активные эпизоды
     const topTopics = Object.entries(topicActivity)
       .sort((a, b) => b[1].count - a[1].count)
       .slice(0, CONFIG.topLimit)

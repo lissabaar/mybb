@@ -1,162 +1,118 @@
-    #stats-app {
-        margin: 20px 0;
-        padding: 20px;
-        background: white;
-        border-radius: 10px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        font-family: Arial, sans-serif;
-        color: #333;
-    }
+#stats-app {
+    margin: 20px 0;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    color: #333333;
+}
 
-    html[data-theme="dark"] #stats-app {
-        background: #1e1e1e;
-        color: #ccc;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-    }
+#stats-app h3 {
+    margin: 0 0 15px 0;
+    color: #333333;
+}
 
-    #stats-app h3 {
-        margin: 0 0 15px 0;
-        color: #333;
-    }
+.date-inputs {
+    display: flex;
+    gap: 10px;
+    margin: 15px 0;
+    align-items: center;
+    flex-wrap: wrap;
+}
 
-    html[data-theme="dark"] #stats-app h3 {
-        color: #ddd;
-    }
+.date-inputs input {
+    padding: 8px 12px;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    font-size: 14px;
+    background: #ffffff;
+    color: #333333;
+}
 
-    .date-inputs {
-        display: flex;
-        gap: 10px;
-        margin: 15px 0;
-        align-items: center;
-        flex-wrap: wrap;
-    }
+.date-inputs label {
+    font-weight: bold;
+    color: #555555;
+}
 
-    .date-inputs input {
-        padding: 8px 12px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        font-size: 14px;
-        background: white;
-        color: #333;
-    }
+#stats-calculate {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background: #6c5ce7;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 15px 0;
+}
 
-    html[data-theme="dark"] .date-inputs input {
-        background: #2d2d2d;
-        border-color: #444;
-        color: #ccc;
-    }
+#stats-calculate:hover {
+    background: #5849c4;
+}
 
-    .date-inputs label {
-        font-weight: bold;
-        color: #555;
-    }
+#stats-calculate:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+}
 
-    html[data-theme="dark"] .date-inputs label {
-        color: #aaa;
-    }
+#stats-loading {
+    text-align: center;
+    color: #666666;
+    margin: 10px 0;
+    display: none;
+}
 
-    #stats-calculate {
-        display: block;
-        width: 100%;
-        padding: 12px;
-        background: var(--accent-color);
-        color: var(--text-on-accent);
-        border: none;
-        border-radius: 5px;
-        font-size: 16px;
-        cursor: pointer;
-        margin: 15px 0;
-    }
+#stats-progress {
+    width: 100%;
+    height: 5px;
+    background: #eeeeee;
+    border-radius: 3px;
+    margin: 10px 0;
+    display: none;
+}
 
-    #stats-calculate:hover {
-        background: var(--accent-color-contrast);
-    }
+#stats-progress-bar {
+    height: 100%;
+    background: #6c5ce7;
+    border-radius: 3px;
+    width: 0%;
+    transition: width 0.3s;
+}
 
-    #stats-calculate:disabled {
-        background: #ccc;
-        cursor: not-allowed;
-    }
+.stats-section {
+    margin: 20px 0;
+    padding: 15px;
+    background: #f9f9f9;
+    border-radius: 5px;
+}
 
-    html[data-theme="dark"] #stats-calculate:disabled {
-        background: #444;
-    }
+.stats-section h4 {
+    margin: 0 0 10px 0;
+    color: #555555;
+}
 
-    #stats-loading {
-        text-align: center;
-        color: #666;
-        margin: 10px 0;
-        display: none;
-    }
+.stats-section ol {
+    margin: 0;
+    padding-left: 20px;
+}
 
-    html[data-theme="dark"] #stats-loading {
-        color: #999;
-    }
+.stats-section li {
+    margin: 5px 0;
+    padding: 5px 0;
+    border-bottom: 1px solid #eeeeee;
+}
 
-    #stats-progress {
-        width: 100%;
-        height: 5px;
-        background: #eee;
-        border-radius: 3px;
-        margin: 10px 0;
-        display: none;
-    }
+.stats-section li:last-child {
+    border-bottom: none;
+}
 
-    html[data-theme="dark"] #stats-progress {
-        background: #333;
-    }
+.stats-section a {
+    color: #6c5ce7;
+    text-decoration: none;
+}
 
-    #stats-progress-bar {
-        height: 100%;
-        background: var(--accent-color);
-        border-radius: 3px;
-        width: 0%;
-        transition: width 0.3s;
-    }
-
-    .stats-section {
-        margin: 20px 0;
-        padding: 15px;
-        background: #f9f9f9;
-        border-radius: 5px;
-    }
-
-    html[data-theme="dark"] .stats-section {
-        background: #2d2d2d;
-    }
-
-    .stats-section h4 {
-        margin: 0 0 10px 0;
-        color: #555;
-    }
-
-    html[data-theme="dark"] .stats-section h4 {
-        color: #aaa;
-    }
-
-    .stats-section ol {
-        margin: 0;
-        padding-left: 20px;
-    }
-
-    .stats-section li {
-        margin: 5px 0;
-        padding: 5px 0;
-        border-bottom: 1px solid #eee;
-    }
-
-    html[data-theme="dark"] .stats-section li {
-        border-bottom-color: #444;
-    }
-
-    .stats-section li:last-child {
-        border-bottom: none;
-    }
-
-    .stats-section a {
-        color: var(--accent-color);
-        text-decoration: none;
-    }
-
-    .stats-section a:hover {
-        text-decoration: underline;
-    }
+.stats-section a:hover {
+    text-decoration: underline;
+}
